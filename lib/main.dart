@@ -1,26 +1,43 @@
-// Importing
 import 'package:flutter/material.dart';
+import 'package:first_project/home.dart';
 
-// entry point
-void main() => runApp(const MyApp());
+void main() {
+  runApp(const MaterialApp(
+    home: Home(),
+  ));
+}
 
-// Define the root widget
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+// sandbox
+class Sandbox extends StatelessWidget {
+  const Sandbox({super.key});
 
-//Build
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        backgroundColor: Colors.blue[100],
-        appBar: AppBar(title: const Text('Hello World App')),
-        body: const Center(
-          child: Text(
-            'Hello, World! It\'s Asmae ',
-            style: TextStyle(fontSize: 35),
-          ),
-        ),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Sandbox'),
+        backgroundColor: Colors.grey,
+      ),
+      body: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Container(
+              height: 100,
+              color: Colors.red,
+              child: const Text('one'),
+            ),
+            Container(
+              height: 200,
+              color: Colors.green,
+              child: const Text('two'),
+            ),
+            Container(
+              height: 300,
+              color: Colors.blue,
+              child: const Text('three'),
+            )
+          ]
       ),
     );
   }
