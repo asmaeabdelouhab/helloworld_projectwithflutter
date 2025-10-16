@@ -1,19 +1,105 @@
 import 'package:flutter/material.dart';
+import 'package:first_project/styled_body_text.dart';
+import 'package:first_project/styled_button.dart';
 
-class PlantPrefs extends StatelessWidget {
+class PlantPrefs extends StatefulWidget {
   const PlantPrefs({super.key});
 
-  void increaseLightIntensity() {
-    print('inc light intensity by 1');
+  @override
+  State<PlantPrefs> createState() => _PlantPrefsState();
+}
+
+class _PlantPrefsState extends State<PlantPrefs> {
+  // Daisy plant values
+  int daisyLight = 2;
+  int daisyWater = 1;
+
+  // Rose plant values
+  int roseLight = 4;
+  int roseWater = 3;
+
+  // Maximum limits
+  final int maxLight = 6;
+  final int maxWater = 4;
+
+  void increaseDaisyLight() {
+    setState(() {
+      if (daisyLight >= maxLight) {
+        daisyLight = 0;
+      } else {
+        daisyLight++;
+      }
+    });
   }
-  void decreaseLightIntensity() {
-    print('dec light intensity by 1');
+
+  void decreaseDaisyLight() {
+    setState(() {
+      if (daisyLight <= 0) {
+        daisyLight = maxLight;
+      } else {
+        daisyLight--;
+      }
+    });
   }
-  void increaseWatering() {
-    print('inc watering by 1');
+
+  void increaseDaisyWater() {
+    setState(() {
+      if (daisyWater >= maxWater) {
+        daisyWater = 0;
+      } else {
+        daisyWater++;
+      }
+    });
   }
-  void decreaseWatering() {
-    print('dec watering by 1');
+
+  void decreaseDaisyWater() {
+    setState(() {
+      if (daisyWater <= 0) {
+        daisyWater = maxWater;
+      } else {
+        daisyWater--;
+      }
+    });
+  }
+
+  void increaseRoseLight() {
+    setState(() {
+      if (roseLight >= maxLight) {
+        roseLight = 0;
+      } else {
+        roseLight++;
+      }
+    });
+  }
+
+  void decreaseRoseLight() {
+    setState(() {
+      if (roseLight <= 0) {
+        roseLight = maxLight;
+      } else {
+        roseLight--;
+      }
+    });
+  }
+
+  void increaseRoseWater() {
+    setState(() {
+      if (roseWater >= maxWater) {
+        roseWater = 0;
+      } else {
+        roseWater++;
+      }
+    });
+  }
+
+  void decreaseRoseWater() {
+    setState(() {
+      if (roseWater <= 0) {
+        roseWater = maxWater;
+      } else {
+        roseWater--;
+      }
+    });
   }
 
   @override
@@ -26,41 +112,27 @@ class PlantPrefs extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  '🌼 Daisy',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
+                const StyledBodyText('🌼 Daisy'),
                 const SizedBox(height: 10),
                 Row(
                     children: [
                       const Text('Light: '),
-                      const Text('2'),
+                      Text('$daisyLight'),
                       Icon(
                         Icons.wb_sunny,
                         size: 25,
                         color: Colors.orange[300],
                       ),
                       const Expanded(child: SizedBox()),
-                      FilledButton(
-                        style: FilledButton.styleFrom(
-                          backgroundColor: Colors.red,
-                          foregroundColor: Colors.white,
-                          minimumSize: const Size(40, 36),
-                        ),
-                        onPressed: decreaseLightIntensity,
+                      StyledButton(
+                        onPressed: decreaseDaisyLight,
+                        backgroundColor: Colors.red,
                         child: const Text('-'),
                       ),
                       const SizedBox(width: 8),
-                      FilledButton(
-                        style: FilledButton.styleFrom(
-                          backgroundColor: Colors.green,
-                          foregroundColor: Colors.white,
-                          minimumSize: const Size(40, 36),
-                        ),
-                        onPressed: increaseLightIntensity,
+                      StyledButton(
+                        onPressed: increaseDaisyLight,
+                        backgroundColor: Colors.green,
                         child: const Text('+'),
                       ),
                     ]
@@ -68,30 +140,22 @@ class PlantPrefs extends StatelessWidget {
                 Row(
                     children: [
                       const Text('Water/Day: '),
-                      const Text('1'),
+                      Text('$daisyWater'),
                       Icon(
                         Icons.water_drop,
                         size: 25,
                         color: Colors.blue[300],
                       ),
                       const Expanded(child: SizedBox()),
-                      FilledButton(
-                        style: FilledButton.styleFrom(
-                          backgroundColor: Colors.red,
-                          foregroundColor: Colors.white,
-                          minimumSize: const Size(40, 36),
-                        ),
-                        onPressed: decreaseWatering,
+                      StyledButton(
+                        onPressed: decreaseDaisyWater,
+                        backgroundColor: Colors.red,
                         child: const Text('-'),
                       ),
                       const SizedBox(width: 8),
-                      FilledButton(
-                        style: FilledButton.styleFrom(
-                          backgroundColor: Colors.blue,
-                          foregroundColor: Colors.white,
-                          minimumSize: const Size(40, 36),
-                        ),
-                        onPressed: increaseWatering,
+                      StyledButton(
+                        onPressed: increaseDaisyWater,
+                        backgroundColor: Colors.blue,
                         child: const Text('+'),
                       ),
                     ]
@@ -110,41 +174,27 @@ class PlantPrefs extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  '🌹 Rose',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
+                const StyledBodyText('🌹 Rose'),
                 const SizedBox(height: 10),
                 Row(
                     children: [
                       const Text('Light: '),
-                      const Text('4'),
+                      Text('$roseLight'),
                       Icon(
                         Icons.wb_sunny,
                         size: 25,
                         color: Colors.orange[300],
                       ),
                       const Expanded(child: SizedBox()),
-                      FilledButton(
-                        style: FilledButton.styleFrom(
-                          backgroundColor: Colors.red,
-                          foregroundColor: Colors.white,
-                          minimumSize: const Size(40, 36),
-                        ),
-                        onPressed: decreaseLightIntensity,
+                      StyledButton(
+                        onPressed: decreaseRoseLight,
+                        backgroundColor: Colors.red,
                         child: const Text('-'),
                       ),
                       const SizedBox(width: 8),
-                      FilledButton(
-                        style: FilledButton.styleFrom(
-                          backgroundColor: Colors.green,
-                          foregroundColor: Colors.white,
-                          minimumSize: const Size(40, 36),
-                        ),
-                        onPressed: increaseLightIntensity,
+                      StyledButton(
+                        onPressed: increaseRoseLight,
+                        backgroundColor: Colors.green,
                         child: const Text('+'),
                       ),
                     ]
@@ -152,30 +202,22 @@ class PlantPrefs extends StatelessWidget {
                 Row(
                     children: [
                       const Text('Water/Day: '),
-                      const Text('3'),
+                      Text('$roseWater'),
                       Icon(
                         Icons.water_drop,
                         size: 25,
                         color: Colors.blue[300],
                       ),
                       const Expanded(child: SizedBox()),
-                      FilledButton(
-                        style: FilledButton.styleFrom(
-                          backgroundColor: Colors.red,
-                          foregroundColor: Colors.white,
-                          minimumSize: const Size(40, 36),
-                        ),
-                        onPressed: decreaseWatering,
+                      StyledButton(
+                        onPressed: decreaseRoseWater,
+                        backgroundColor: Colors.red,
                         child: const Text('-'),
                       ),
                       const SizedBox(width: 8),
-                      FilledButton(
-                        style: FilledButton.styleFrom(
-                          backgroundColor: Colors.blue,
-                          foregroundColor: Colors.white,
-                          minimumSize: const Size(40, 36),
-                        ),
-                        onPressed: increaseWatering,
+                      StyledButton(
+                        onPressed: increaseRoseWater,
+                        backgroundColor: Colors.blue,
                         child: const Text('+'),
                       ),
                     ]
